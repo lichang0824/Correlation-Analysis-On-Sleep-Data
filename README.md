@@ -106,7 +106,7 @@ Show scatterplot with best fit line.\
 
 ## Code for Dataset 2 - ECSMP: A dataset on Emotion, cognition, sleep, and multi-model physiological signals
 
-The ECSMP dataset: A dataset on emotion, cognition, sleep, and multi-model physiological signals [4], [5]can be downloaded by the following link: https://data.mendeley.com/datasets/vn5nknh3mn/2
+The ECSMP dataset: A dataset on emotion, cognition, sleep, and multi-model physiological signals [4], [5] can be downloaded by the following link: https://data.mendeley.com/datasets/vn5nknh3mn/2
 
 sleep quality.xlsx contains each participant's sleep quality analysis result. Each row represents a test subject
 
