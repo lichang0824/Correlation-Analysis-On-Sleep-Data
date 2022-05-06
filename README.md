@@ -13,7 +13,7 @@
 - pandas
 - matplotlib
 
-## Code for Dataset 1 - MMASH
+## Code for Dataset 1 - MMASH [1],[2],[3]
 
 ### All code is highly automated. It would run seamlessly, and it can be run multiple times without breaking (idempotent). 
 ### However, all code and data must be present in the correct places, and shells must be run in a specific order. 
@@ -103,9 +103,9 @@ Show strong negative correlations.\
 Show scatterplot with best fit line.\
 ![7_Pandas_Show_Two_Best_Fit_Lines.png](/MMASH_Dataset/Screenshots/7_Pandas_Show_Two_Best_Fit_Lines.png)
 
-## Code for Dataset 2 - ECSMP: A dataset on Emotion, cognition, sleep, and multi-model physiological signals [1], [2]
+## Code for Dataset 2 - ECSMP: A dataset on Emotion, cognition, sleep, and multi-model physiological signals
 
-The dataset used in this project is the ECSMP: A dataset on emotion, cognition, sleep, and multi-model physiological signals [1], [2]. In particular, the scale.xlsx and sleep quality.xlsx files. The data can be downloaded by the following link: https://data.mendeley.com/datasets/vn5nknh3mn/2
+The dataset used in this project is the ECSMP: A dataset on emotion, cognition, sleep, and multi-model physiological signals [4], [5]. In particular, the scale.xlsx and sleep quality.xlsx files. The data can be downloaded by the following link: https://data.mendeley.com/datasets/vn5nknh3mn/2
 
 sleep quality.xlsx contains each participant's sleep quality analysis result. Each row represents a test subject
 
@@ -173,3 +173,10 @@ Hive Tables Created: (the "other variables" mentioned below are PSQI, POMS, SDS,
 
 #### 8.2 Using pandas and matplotlib
 Use the code stored in ECSMP_Dataset/Correlation.ipynb to generate the Correlation Matrix that shows all the correlations among all variables included in the Final_Dataset.
+
+## References
+[1] A. Goldberger, L. Amaral, L. Glass, J. Hausdorff, P.C. Ivanov, R. Mark, J.E. Mietus, G.B. Moody, C.K. Peng, and H.E. Stanley, “PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals,” 2000. [Online]. 101 (23), pp. e215–e220. [Accessed: 05-May-2022]. 
+[2] A. Rossi, E. D. Pozzo, D. Menicagli, C. Tremolanti, C. Priami, A. Sirbu, D. Clifton, C. Martini, and D. Morelli, “Multilevel monitoring of activity and sleep in healthy people,” Multilevel Monitoring of Activity and Sleep in Healthy People v1.0.0, 19-Jun-2020. [Online]. Available: https://physionet.org/content/mmash/1.0.0/. [Accessed: 06-May-2022].
+[3] A. Rossi, E. Da Pozzo, D. Menicagli, C. Tremolanti, C. Priami, A. Sîrbu, D. A. Clifton, C. Martini, and D. Morelli, “A public dataset of 24-H multi-levels psycho-physiological responses in young healthy adults,” MDPI, 25-Sep-2020. [Online]. Available: https://www.mdpi.com/2306-5729/5/4/91. [Accessed: 06-May-2022].
+[4] Z. Gao, X. Cui, W. Wan, W. Zheng, and Z. Gu, “ECSMP: A dataset on emotion, cognition, sleep, and multi-model physiological signals,” Data in Brief, 01-Dec-2021. [Online]. Available: https://www.sciencedirect.com/science/article/pii/S2352340921009355. [Accessed: 06-May-2022].
+[5] Z. Gao, X. Cui, wang wan, W. Zheng, and Z. Gu, “ECSMP: A dataset on emotion, cognition, sleep, and multi-model physiological signals,” Mendeley Data, 04-Nov-2021. [Online]. Available: https://data.mendeley.com/datasets/vn5nknh3mn/2. [Accessed: 06-May-2022]. 
