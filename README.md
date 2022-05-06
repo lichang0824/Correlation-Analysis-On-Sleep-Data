@@ -7,17 +7,17 @@
 ### Hive queries are stored as a file and run as non-interactive script. A passwordfile is necessary. The passwordfile in the repository does NOT contain password. Change netID and edit passwordfile.txt if necessary. Alternatively, copy code from ```.hql``` files into Hive and execute. 
 
 Before Running, my home directory looks like this. It should contain all code. 
-![Home_Files.png](/Screenshots/Home_Files.png)
+![Home_Files.png](/MMASH_Dataset/Screenshots/Home_Files.png)
 Use [compile.sh](/MMASH_Dataset/compile.sh) to recompile if necessary. Recompiling will remove old .class files. 
 
 Before Running, HDFS should look like this. The folder "project_data" should contain project data (the DataPaper folder). 
-![HDFS_Files.png](/Screenshots/HDFS_Files.png)
+![HDFS_Files.png](/MMASH_Dataset/Screenshots/HDFS_Files.png)
 
 If all code and data are put in the places described above, the code will run. However, it can also be changed if necessary. 
 Giving input and output paths via arguments is time-consuming and messy. Hardcoding improves automation. 
 
 ### Step 1 - Upload Data to HDFS
-![1_Upload_Data_to_Peel.png](/Screenshots/1_Upload_Data_to_Peel.png)
+![1_Upload_Data_to_Peel.png](/MMASH_Dataset/Screenshots/1_Upload_Data_to_Peel.png)
 After uploading, copy this data from home directory to hdfs directory. 
 ``` hdfs dfs -put DataPaper project_data/```
 
@@ -37,25 +37,25 @@ This will print the output to the shell, and not write any tables.
 Here're the outputs. 
 
 select distinct state from actigraph;\
-![4_distinct_state.png](/Screenshots/4_distinct_state.png)
+![4_distinct_state.png](/MMASH_Dataset/Screenshots/4_distinct_state.png)
 
 select distinct gender from info;\
-![4_distinct_gender.png](/Screenshots/4_distinct_gender.png)
+![4_distinct_gender.png](/MMASH_Dataset/Screenshots/4_distinct_gender.png)
 
 select max(ibi_s) from rr;\
-![4_max_ibi_s.png](/Screenshots/4_max_ibi_s.png)
+![4_max_ibi_s.png](/MMASH_Dataset/Screenshots/4_max_ibi_s.png)
 
 select min(ibi_s) from rr;\
-![4_min_ibi_s.png](/Screenshots/4_min_ibi_s.png)
+![4_min_ibi_s.png](/MMASH_Dataset/Screenshots/4_min_ibi_s.png)
 
 describe questionnaire;\
-![4_describe_questionnaire.png](/Screenshots/4_describe_questionnaire.png)
+![4_describe_questionnaire.png](/MMASH_Dataset/Screenshots/4_describe_questionnaire.png)
 
 describe sleep;\
-![4_describe_sleep.png](/Screenshots/4_describe_sleep.png)
+![4_describe_sleep.png](/MMASH_Dataset/Screenshots/4_describe_sleep.png)
 
 select distinct activity_type from activity;\
-![4_distinct_activity_type.png](/Screenshots/4_distinct_activity_type.png)
+![4_distinct_activity_type.png](/MMASH_Dataset/Screenshots/4_distinct_activity_type.png)
 
 ### Step 5 - Hive Aggregation
 Use [hive_query.sh](/MMASH_Dataset/hive_query.sh) to aggregate tables and generate output. 
@@ -74,16 +74,16 @@ This notebook will further aggregate the activity table, filling in with 0 if th
 Then, it will do the correlation analysis. High correlation pairs are printed and two scatterplots with best fit line are drawn. 
 
 Import, clean, and merge.\
-![7_Pandas_Import_Clean_Merge.png](/Screenshots/7_Pandas_Import_Clean_Merge.png)
+![7_Pandas_Import_Clean_Merge.png](/MMASH_Dataset/Screenshots/7_Pandas_Import_Clean_Merge.png)
 
 Show all columns.\
-![7_Pandas_Show_All_Columns.png](/Screenshots/7_Pandas_Show_All_Columns.png)
+![7_Pandas_Show_All_Columns.png](/MMASH_Dataset/Screenshots/7_Pandas_Show_All_Columns.png)
 
 Show strong positive correlations.\
-![7_Pandas_Show_Positive_Correlations.png](/Screenshots/7_Pandas_Show_Positive_Correlations.png)
+![7_Pandas_Show_Positive_Correlations.png](/MMASH_Dataset/Screenshots/7_Pandas_Show_Positive_Correlations.png)
 
 Show strong negative correlations.\
-![7_Pandas_Show_Negative_Correlations.png](/Screenshots/7_Pandas_Show_Negative_Correlations.png)
+![7_Pandas_Show_Negative_Correlations.png](/MMASH_Dataset/Screenshots/7_Pandas_Show_Negative_Correlations.png)
 
 Show scatterplot with best fit line.\
-![7_Pandas_Show_Two_Best_Fit_Lines.png](/Screenshots/7_Pandas_Show_Two_Best_Fit_Lines.png)
+![7_Pandas_Show_Two_Best_Fit_Lines.png](/MMASH_Dataset/Screenshots/7_Pandas_Show_Two_Best_Fit_Lines.png)
