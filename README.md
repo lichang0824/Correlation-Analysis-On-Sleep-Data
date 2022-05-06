@@ -13,7 +13,8 @@
 - pandas
 - matplotlib
 
-## Code for Dataset 1 - MMASH [1],[2],[3]
+## Code for Dataset 1 - MMASH
+The MMASH dataset: Multilevel Monitoring of Activity and Sleep in Healthy people [1],[2],[3] can be downloaded by the following link: https://physionet.org/content/mmash/1.0.0/
 
 ### All code is highly automated. It would run seamlessly, and it can be run multiple times without breaking (idempotent). 
 ### However, all code and data must be present in the correct places, and shells must be run in a specific order. 
@@ -105,7 +106,7 @@ Show scatterplot with best fit line.\
 
 ## Code for Dataset 2 - ECSMP: A dataset on Emotion, cognition, sleep, and multi-model physiological signals
 
-The dataset used in this project is the ECSMP: A dataset on emotion, cognition, sleep, and multi-model physiological signals [4], [5]. In particular, the scale.xlsx and sleep quality.xlsx files. The data can be downloaded by the following link: https://data.mendeley.com/datasets/vn5nknh3mn/2
+The ECSMP dataset: A dataset on emotion, cognition, sleep, and multi-model physiological signals [4], [5]can be downloaded by the following link: https://data.mendeley.com/datasets/vn5nknh3mn/2
 
 sleep quality.xlsx contains each participant's sleep quality analysis result. Each row represents a test subject
 
@@ -172,7 +173,7 @@ Hive Tables Created: (the "other variables" mentioned below are PSQI, POMS, SDS,
 - cognitive_reappraisal_corr: stores the correlation between cognitive_reappraisal and other variables
 
 #### 8.2 Using pandas and matplotlib
-Use the code stored in ECSMP_Dataset/Correlation.ipynb to generate the Correlation Matrix that shows all the correlations among all variables included in the Final_Dataset.
+Get Final_Dataset from HDFS to Home directory. Then, use `scp` to download the Final_Dataset to local machine for pandas. Use the code stored in ECSMP_Dataset/Correlation.ipynb to generate the Correlation Matrix that shows all the correlations among all variables included in the Final_Dataset.
 
 ## References
 [1] A. Goldberger, L. Amaral, L. Glass, J. Hausdorff, P.C. Ivanov, R. Mark, J.E. Mietus, G.B. Moody, C.K. Peng, and H.E. Stanley, “PhysioBank, PhysioToolkit, and PhysioNet: Components of a new research resource for complex physiologic signals,” 2000. [Online]. 101 (23), pp. e215–e220. [Accessed: 05-May-2022].   
