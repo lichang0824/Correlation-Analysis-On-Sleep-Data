@@ -1,3 +1,17 @@
+## Motivation
+  This study is important for the general public because sleep is such a vital part of our life. Sleep not only affects our mood and emotions, but it can also tangibly and meaningfully affect our productivity and professional performance. Previous research has shown that sleep deprivation can impact our neurological performance, such as our ability to remember and think.   
+  As college students, this kind of ability is especially important. In addition to that, college students can have less regular sleep patterns and more variability in their sleep, since they need to cope with so many aspects of their life, all the while maintaining academic performance. Therefore, this study is not only important for the general public to understand the relationship between what we do on a daily basis and our sleep quality, therefore our emotions and neurological performance. 
+
+## Tech used
+**Built with** 
+- Hadoop Ecosystem
+  - PySpark
+  - Hive
+  - Hadoop MapReduce
+  - HDFS
+- pandas
+- matplotlib
+
 ## Code for Dataset 1 - MMASH
 
 ### All code is highly automated. It would run seamlessly, and it can be run multiple times without breaking (idempotent). 
@@ -87,3 +101,74 @@ Show strong negative correlations.\
 
 Show scatterplot with best fit line.\
 ![7_Pandas_Show_Two_Best_Fit_Lines.png](/MMASH_Dataset/Screenshots/7_Pandas_Show_Two_Best_Fit_Lines.png)
+
+## Code for Dataset 2 - ECSMP: A dataset on Emotion, cognition, sleep, and multi-model physiological signals [1], [2]
+
+The dataset used in this project is the ECSMP: A dataset on emotion, cognition, sleep, and multi-model physiological signals [1], [2]. In particular, the scale.xlsx and sleep quality.xlsx files. The data can be downloaded by the following link: https://data.mendeley.com/datasets/vn5nknh3mn/2
+
+sleep quality.xlsx contains each participant's sleep quality analysis result. Each row represents a test subject
+
+scale.xlsx contains multiple sheets and each sheet represents a questionnaire. Each row in each questionnaire represents a test subject. The questionnaires that are used in this project are:
+- The Emotion Regulation Questionnaire (ERQ)
+- The Self-Rating Depression Scale (SDS)
+- The Profile of Mood States Questionnaire (POMS) - 40 items
+- The Pittsburgh Sleep Quality Index (PSQI)
+
+### Step 1 - Upload Datasets to HDFS
+
+### Step 2 - Transfer datasets with `.xlsx` format to `.csv` format
+Since the datasets are in .xlsx format, the first step is to transfer the datasets in .xlsx format to .csv format using PySpark and pandas.
+The codes to follow can be found in the folder ECSMP_Dataset/Change_Datasets_Format. The folder includes five .py files, which are Sleep_Quality.py, ERQ.py, POMS.py, PSQI.py, and SDS.py.
+The way to run the codes is to copy and paste them directly into the PySpark Interactive Shell.
+
+### Step 3 - Data Profiling
+Using MapReduce written in Java to profile the ERQ, POMS, PSQI, SDS, and Sleep_Quality csv datasets by counting the test subject records inside the dataset. The MapReduce profiling codes are stored in ECSMP_Dataset/Data_Profiling.
+
+### Step 4 - Data Cleaning
+Using MapReduce written in Java to clean the ERQ, POMS, PSQI, SDS, and Sleep_Quality csv datasets. Each dataset has a corresponding MapReduce cleaning code. The codes are stored in the folders with the following naming "Clean_[Dataset Name]" (ex: Clean_POMS). Then store all the clean outputs obtained from Reducer to HDFS.
+
+### Step 5 - Data Aggregation
+Using the Clean datasets from the previous step to create the Hive tables. Each dataset will have a corresponding Hive table. In the end, these Hive tables will be merged into one Hive table, called merge_table.
+
+Run `Beeline` to access Hive Grunt Shell. Copy and Paste the Hive statements directly into the Hive Grunt Shell to create Hive tables.
+
+#### 5.1 Create the Hive tables: 
+Copy and paste the first six Hive statements stored in ECSMP_Dataset/Hive_Statements.hql to create the Hive tables corresponding to ERQ, POMS, PSQI, SDS, and Sleep Quality datasets and the merge Hive table.
+
+#### 5.2 Drop the "Unfinished" or "Unqualified" rows: 
+Use the seventh Hive statement stored in ECSMP_Dataset/Hive_Statements.hql to create a Hive internal table called new_drop_and_clean_table that is used to store the data after dropping "Unfinished" or "Unqualified" data from the merge_table. 
+The data is defined as "Unfinished" or "Unqualified" based on the "Complete" column in ERQ, POMS, PSQI, and SDS datasets and the "ECG Complete" column and "Signal Quality" column in the Sleep Quality dataset.
+
+#### 5.3 The data included in the new_drop_and_clean_table is then stored in HDFS
+
+### Step 6 - Data Profiling
+Profile the data get from the new_drop_and_clean_table Hive table, using the same MapReduce profiling codes that are stored in ECSMP_Dataset/Data_Profiling.
+
+### Step 7 - Data Cleaning
+Using MapReduce written in Java to clean the data get from the Hive table, new_drop_and_clean_table. The code is stored in ECSMP_Dataset/Clean_Merge. Then store the clean output from Reducer to HDFS. This output data is used to do the final analysis. Let's call it "Final_Dataset."
+
+### Step 8 - Data Analysis
+#### 8.1 Using Hive tables
+Use the eighth Hive statement in ECSMP_Dataset/Hive_Statements.hql to create a Hive external table called newCleanMergeDropTable. This Hive table includes the Final_Dataset. Use this newCleanMergeDropTable Hive table to do further analysis in Hive.
+
+Using the Hive statements starting at the 9th statement in ECSMP_Dataset/Hive_Statements.hql to create multiple internal Hive tables that store different analyses.
+
+Hive Tables Created: (the "other variables" mentioned below are PSQI, POMS, SDS, Expressive Suppression, and Cognitive Reappraisal variables)
+
+- col_avg: stores each column's average value.
+- col_min: stores each column's minimum value.
+- col_max: stores each column's maximum value.
+- time_in_bed_corr: stores the correlation between - time_in_bed and other variables
+- sleep_efficiency_corr: stores the correlation - between sleep_efficiency and other variables
+- sleep_duration_corr: stores the correlation between sleep_duration and other variables
+- deep_sleep_corr: stores the correlation between - deep_sleep and other variables
+- light_sleep_corr: stores the correlation between light_sleep and other variables
+- rem_corr: stores the correlation between rem and other variables
+- poms_corr: stores the correlation between poms and other variables
+- psqi_corr: stores the correlation between psqi and other variables
+- sds_corr: stores the correlation between sds and other variables
+- expressive_suppression_corr: stores the correlation between expressive_suppression and other variables
+- cognitive_reappraisal_corr: stores the correlation between cognitive_reappraisal and other variables
+
+#### 8.2 Using pandas and matplotlib
+Use the code stored in ECSMP_Dataset/Correlation.ipynb to generate the Correlation Matrix that shows all the correlations among all variables included in the Final_Dataset.
